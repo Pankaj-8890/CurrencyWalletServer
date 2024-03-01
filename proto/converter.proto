@@ -1,0 +1,24 @@
+syntax = "proto3";
+package Currencyconverter;
+
+option go_package = "currencyServer/Currencyconverter";
+
+
+service Currency {
+    rpc ConvertToINR(Request) returns (Response);
+    rpc ConvertFromINR(Request) returns (Response);
+}
+  
+message Request {
+    string currency = 1;
+    float value = 2;
+    string targetCurrency = 3;
+    
+};
+
+message Response {
+    float value = 1;
+};
+
+
+// protoc -Iproto --go_out=proto  --go_opt=module=currencyServer --go-grpc_out=proto --go-grpc_opt=module=currencyServer proto/converter.proto
